@@ -3,12 +3,14 @@ import Header from './components/Header';
 import IngestPage from './components/IngestPage';
 import QueryPage from './components/QueryPage';
 import DocumentsPage from './components/DocumentsPage';
+import MetadataPage from './components/MetadataPage';
 import { listDocuments } from './api/nexvec';
 
 const TAB_SIDEBAR = {
   Ingest:    0,
   Documents: 1,
   Query:     2,
+  Metadata:  3,
 };
 
 function StatusBar({ stats, loading }) {
@@ -28,8 +30,8 @@ function StatusBar({ stats, loading }) {
   );
 }
 
-const WORKSPACE = ['Ingest Resumes', 'Manage Documents', 'Semantic Search'];
-const WORKSPACE_TABS = ['Ingest', 'Documents', 'Query'];
+const WORKSPACE = ['Ingest Resumes', 'Manage Documents', 'Semantic Search', 'Metadata Explorer'];
+const WORKSPACE_TABS = ['Ingest', 'Documents', 'Query', 'Metadata'];
 
 export default function App() {
   const [activeTab, setActiveTab]   = useState('Ingest');
@@ -54,6 +56,7 @@ export default function App() {
 
   const Page = activeTab === 'Query'      ? QueryPage
              : activeTab === 'Documents' ? DocumentsPage
+             : activeTab === 'Metadata'  ? MetadataPage
              :                             IngestPage;
 
   return (
